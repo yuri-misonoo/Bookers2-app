@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
   
-  belongs_to :u
+  belongs_to :user
   
 end
