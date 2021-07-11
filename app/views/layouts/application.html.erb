@@ -22,7 +22,7 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
               <li class="nav-item">
-                <span class="fas fa-home nav-link text-light"><%= link_to "Home", user_path(@user.id) %></span>
+                <span class="fas fa-home nav-link text-light"><%= link_to "Home", user_path(current_user.id) %></span>
               </li>
               <li class="nav-item">
                 <span class="fas fa-users nav-link text-light"><%= link_to "User", users_path %></span>
@@ -54,7 +54,7 @@
         </div>
       </nav>
 　　</header>
-　　
+
     <main>
       <%= yield %>
     </main>
@@ -67,7 +67,7 @@
         </div>
       </div>
     </footer>
-    
+
 
   </body>
 </html>
