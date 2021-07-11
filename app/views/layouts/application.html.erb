@@ -22,10 +22,16 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
               <li class="nav-item">
-                <%= link_to "Home", root_path %>
+                <span class="fas fa-home nav-link text-light"><%= link_to "Home", user_path(@user.id) %></span>
               </li>
               <li class="nav-item">
-                <%= link_to "logout", destroy_user_session_path, method: :delete %>
+                <span class="fas fa-users nav-link text-light"><%= link_to "User", users_path %></span>
+              </li>
+              <li class="nav-item">
+                <span class="fas fa-book-open nav-link text-light"><%= link_to "Book", books_path %></span>
+              </li>
+              <li class="nav-item">
+                <span class="fas fa-sign-out-alt nav-link text-light" rel="nofollow" data-method="delete"><%= link_to "logout", destroy_user_session_path %></span>
               </li>
 
             <% else %>
@@ -48,10 +54,20 @@
         </div>
       </nav>
 　　</header>
-
+　　
     <main>
       <%= yield %>
     </main>
+    <footer>
+      <div class="container mt-5">
+      	<div class="row">
+        	<div class="mx-auto">
+        		<p>CopyRight Infratop.inc</p>
+        	</div>
+        </div>
+      </div>
+    </footer>
+    
 
   </body>
 </html>
