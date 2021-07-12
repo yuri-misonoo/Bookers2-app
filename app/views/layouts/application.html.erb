@@ -54,6 +54,10 @@
         </div>
       </nav>
 　　</header>
+　　
+　　<% if flash[:notice] %>
+　　  <%= flash[:notice] %>
+　　<% end %>
 
     <main>
       <%= yield %>
