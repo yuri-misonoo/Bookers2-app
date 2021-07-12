@@ -1,13 +1,8 @@
 <p id="notice"></p>
 <div class="container px-5 px-sm-0">
+  <%= render 'books/error', book: @book %>
   <div class="row">
     <div class="col-md-3">
-      <% if @book.errors.any? %>
-        <%= @book.errors.count %>errors prohibited this obj from being saveed:
-        <% @book.errors.full_messages.each do |message| %>
-          <%= message %>
-        <% end %>
-      <% end %>
       <%= render 'users/left-bar', user: current_user, book: @book %>
     </div>
 
