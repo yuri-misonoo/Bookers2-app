@@ -24,8 +24,10 @@
                 </td>
                 <td><%= @book.title %></td>
                 <td><%= @book.body %></td>
+                <% if @book.user.id == current_user.id %>
                 <td><%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-sm btn-success" %></td>
-                <td><%= link_to "Destroy", books_path, method: :delete, class:"btn btn-sm btn-danger" %></td>
+                <td><%= link_to "Destroy", destroy_book_path, method: :delete, class:"btn btn-sm btn-danger" %></td>
+                <% end %>
               </tr>
           </tbody>
         </table>
@@ -38,7 +40,7 @@
 
 
 
-　
+
 
   
 

@@ -28,10 +28,10 @@
                 <span class="fas fa-users nav-link text-light"><%= link_to "User", users_path %></span>
               </li>
               <li class="nav-item">
-                <span class="fas fa-book-open nav-link text-light"><%= link_to "Book", books_path %></span>
+                <%= link_to "Book", books_path, class:"fas fa-book-open nav-link text-light" %>
               </li>
               <li class="nav-item">
-                <span class="fas fa-sign-out-alt nav-link text-light" rel="nofollow" data-method="delete"><%= link_to "logout", destroy_user_session_path %></span>
+                <%= link_to "logout", destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt nav-link text-light"%>
               </li>
 
             <% else %>
