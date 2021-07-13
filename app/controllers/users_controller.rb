@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :ensure_correct_user,only: [:edit, :update]
 
   def create
     @book = Book.new(book_params)
@@ -23,18 +24,24 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:nortice] = "You have created user successfully."
+      flash[:notice] = "You have created user successfully."
       redirect_to user_path(@user.id)
     else
       render 'edit'
     end
   end
+    
+    def ensure_correct_user
+      @user = User.find(params[:id])
+      unless @user.id == current_user.id
+        redirect_to user_path(current_user.id)
+      end
+    end 
   
   private
   def user_params

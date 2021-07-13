@@ -5,7 +5,7 @@
       <%= render 'users/left-bar', user: current_user, book: @book %>
     </div>
 
-    <div class="col-lg-8">
+    <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
       <table class="table table-striped">
         <thread>
@@ -23,7 +23,7 @@
                 <%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50" %>
               </td>
               <td><%= user.name %></td>
-              <td><%= link_to "show", user_path(user.id) %></td>
+              <td><%= link_to "Show", user_path(user.id) %></td>
             </tr>
           <% end %>
         </tboby>
