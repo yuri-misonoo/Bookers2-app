@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if @book.save
       flash[:notice] = "You have created book successfully."
       redirect_to book_path(@book.id)
-    else 
+    else
       render template: 'books/index'
     end
   end
@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
@@ -35,17 +36,17 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
-    
+
     def ensure_correct_user
       @user = User.find(params[:id])
       unless @user.id == current_user.id
         redirect_to user_path(current_user.id)
       end
-    end 
-  
+    end
+
   private
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
-  
+
 end
