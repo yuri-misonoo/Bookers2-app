@@ -1,5 +1,5 @@
   <% if book.errors.any? %>
-    <h2><%= book.errors.count %>errors prohibited this obj from being saveed:</h2>
+    <h2 class="alert alert-danger" role="alert"><%= book.errors.count %>errors prohibited this obj from being saveed:</h2>
     <% book.errors.full_messages.each do |message| %>
       <%= message %>
     <% end %>
