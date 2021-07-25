@@ -26,12 +26,12 @@ class UsersController < ApplicationController
     end
   end
 
-    def ensure_correct_user
-      @user = User.find(params[:id])
-      unless @user.id == current_user.id
-        redirect_to user_path(current_user.id)
-      end
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    unless @user.id == current_user.id
+      redirect_to user_path(current_user.id)
     end
+  end
 
   private
   def user_params
