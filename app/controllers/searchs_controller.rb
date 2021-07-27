@@ -1,14 +1,15 @@
 class SearchsController < ApplicationController
-  
+
   def search
     @model = params["model"]
     @method = params["method"]
     @content = params["content"]
-    @record = search_for(@model, @content, @method)
+    @records = search_for(@model, @method, @content)
   end
-  
+
   private
-  def search_for(model, content, method)
+
+  def search_for(model, method, content)
     if model == 'user'
       if method == 'perfect'
         User.where(name: content)
@@ -22,5 +23,5 @@ class SearchsController < ApplicationController
         Book.where('title LIKE ?', '%'+content+'%')
       end
     end
-  
+  end
 end

@@ -55,9 +55,13 @@
 　　</header>
 
 　　<% if flash[:notice] %>
-　　  <%= flash[:notice] %>
-　　<% end %>
-
+      <%= flash[:notice] %>
+  　<% end %>
+  　
+    <% if user_signed_in? %>
+      <%= render 'searchs/search_form' %>
+    <% end %>
+      　
     <main>
       <%= yield %>
     </main>
