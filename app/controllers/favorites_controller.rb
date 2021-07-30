@@ -4,6 +4,7 @@ class FavoritesController < ApplicationController
     @book = Book.find(params[:book_id]) 
     favorite = current_user.favorites.build(book_id: @book.id) 
     favorite.save
+    render :index
   end 
 
    
@@ -12,6 +13,8 @@ class FavoritesController < ApplicationController
     @book = Book.find(params[:book_id]) 
     favorite = current_user.favorites.find_by(book_id: @book.id) 
     favorite.destroy 
+    render :index
+    
   end 
 
 end
