@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :ensure_correct_user,only: [:edit, :update]
+  before_action :favorites_order, only: [:index]
 
   def create
     @book = Book.new(book_params)
@@ -14,8 +15,8 @@ class BooksController < ApplicationController
   end
 
   def index
+    @books = Book.find(@order_array).sort_by{ |o| @order_array.index(o.id)} 
     @book = Book.new
-    @books = Book.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
   end
 
   def show
@@ -55,5 +56,15 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body)
   end
+  
+  def favorites_order
+    array = []
+    Book.all.each do |item|
+      array << [item.id, Favorite.where(book_id: item.id, created_at: 7.days.ago..Time.current).count]
+    end
+    array.sort! {|a,b| b[1] <=> a[1]}
+    @order_array = array.map{|item| item[0]}
+  end
+ 
 
 end
