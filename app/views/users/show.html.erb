@@ -2,7 +2,8 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
-      <%= render 'users/left-bar', user: @user, book: @book %>
+      <%= render 'users/user_info', user: @user %>
+      <%= render 'users/book_form', user: @user, book: @book %>
     </div>
 
     <div class="col-md-8 offset-md-1">
