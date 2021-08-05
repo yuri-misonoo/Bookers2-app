@@ -1,0 +1,28 @@
+<% @entries.each do |e| %>
+  <h3><%= e.user.name %>さん</h3>
+<% end %>
+
+<div class="chats">
+  <div class="chat">
+    <% if @messages.present? %>
+      <table>
+       <% @messages.each do |m| %>
+      　  <tbody >
+      　   <tr>
+      　     <td><%= m.message %></td>
+      　     <td> <%= m.created_at.strftime("%Y-%m-%d %H:%M")%></td>
+      　   </tr>
+      　  </tbody>
+      　<% end %>
+      　</table>
+    <% end %>
+  </div>
+</div>
+
+<div class="chat-form">
+  <%= form_with model: @message, url: messages_path, local: true do |f| %>
+    <%= f.text_field :message, placefolder: "メッセージ" %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <%= f.submit "投稿", class: "form-submit" %>
+  <% end %>
+</div>

@@ -18,23 +18,42 @@
       <td>followers</td>
       <td><%= link_to user.followers.count, followers_user_path(user) %></td>
     </tr>
-    <tr><%= render 'users/contact' %></tr>
   </tbody>
 </table>
 
 <div class="row mb-2">
-  <% unless current_user == user %>
-    <% if current_user.following?(user) %>
-      <%= form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete }) do |f| %>
-        <%= hidden_field_tag :follow_id, user.id %>
-        <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block' %>
-      <% end %>
-    <% else %>
-      <%= form_for(current_user.relationships.build) do |f| %>
-        <%= hidden_field_tag :follow_id, user.id %>
-        <%= f.submit 'Follow', class: 'btn btn-primary btn-block' %>
+  <div class="folow-btn">
+    <% unless current_user == user %>
+      <% if current_user.following?(user) %>
+        <%= form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete }) do |f| %>
+          <%= hidden_field_tag :follow_id, user.id %>
+          <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block' %>
+        <% end %>
+      <% else %>
+        <%= form_for(current_user.relationships.build) do |f| %>
+          <%= hidden_field_tag :follow_id, user.id %>
+          <%= f.submit 'Follow', class: 'btn btn-primary btn-block' %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %> 
+  </div>
+
+  <div class="chat-btn ml-3">
+    <% unless user.id == current_user.id %>
+      <% if (current_user.following? user) && (user.following? current_user) %>
+        <% if have_room == true %>
+          <%= link_to "チャットへ", room_path(room_id), class: "btn btn-info" %>
+        <% else %>
+          <%= form_with model: room, local: true do |f| %>
+            <%= fields_for entry do |e| %>
+              <%= e.hidden_field :user_id, value: user.id %>
+            <% end %>
+            <%= f.submit "チャットを始める", class: "btn btn-info" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
- 
+
+
