@@ -15,13 +15,14 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.find(@order_array).sort_by{ |o| @order_array.index(o.id)} 
+    @books = Book.find(@order_array).sort_by{ |o| @order_array.index(o.id)}
     @book = Book.new
   end
 
   def show
     @new_book = Book.new
     @book = Book.find(params[:id])
+    impressionist(@book, nil, unique: [:impressionable_id, :ip_address])
     @book_comment = BookComment.new
   end
 
@@ -56,7 +57,7 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body)
   end
-  
+
   def favorites_order
     array = []
     Book.all.each do |item|
@@ -65,6 +66,6 @@ class BooksController < ApplicationController
     array.sort! {|a,b| b[1] <=> a[1]}
     @order_array = array.map{|item| item[0]}
   end
- 
+
 
 end
