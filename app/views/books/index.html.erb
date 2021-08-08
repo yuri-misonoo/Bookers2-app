@@ -37,6 +37,11 @@
             </tr>
         </tboby>
       </table>
+      
+      <div class="graph">
+        <%= render '/books/graph', chartlabels: @chartlabels, chartdatas: @chartdatas %>
+      </div>
+      
     </div>
   </div>
 </div>

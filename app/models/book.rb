@@ -12,7 +12,11 @@ class Book < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true, length: {maximum: 200}
-  
+
   is_impressionable counter_cache: true
+
+  #def group_by_day
+   # scope :created_a_week_ago, -> { where(created_at: 1.week.ago.all_day) }
+  #end
 
 end
