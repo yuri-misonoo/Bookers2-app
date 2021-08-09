@@ -1,12 +1,13 @@
-<script> 
+<canvas id="myChart" width="100" height="70"> </canvas>
+<script>
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'line',                      　
+        type: 'line',
         data: {
-            labels: <%= chartlabels %>,  
+            labels: <%= chartlabels %>,
             datasets: [{
               label: "投稿数",
-              data: <%= chartdatas %>, 
+              data: <%= chartdatas %>,
               backgroundColor: 'rgba(255, 80, 120, 1.0)',
               borderColor: 'rgba(255, 80, 120, 1.0)',
               fill: false

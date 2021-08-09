@@ -17,9 +17,9 @@ class BooksController < ApplicationController
   def index
     @books = Book.find(@order_array).sort_by{ |o| @order_array.index(o.id)}
     @book = Book.new
-    @book_by_day = @books.group_by_day(:created_at).where(created_at: 1.week.ago.all_day)
-    @chartlabels = @book_by_day.map(&:first).to_json.html_safe
-    @chartdates = @book_by_day.map(&:second)
+    #@book_by_day = @books.group_by_day(:created_at).size
+    #@chartlabels = @book_by_day.map(&:first).to_json.html_safe
+    #@chartdates = @book_by_day.map(&:second)
   end
 
   def show
